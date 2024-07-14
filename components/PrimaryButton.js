@@ -25,6 +25,7 @@ const PrimaryButton = ({ children, onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
+    fontFamily: "open-sans",
     borderRadius: 28,
     overflow: "hidden",
     margin: 8,
@@ -32,11 +33,11 @@ const styles = StyleSheet.create({
   pressContainer: {
     paddingVertical: 8,
     paddingHorizontal: 16,
-    backgroundColor: Colors.accentColor,
+    backgroundColor: Colors.tertiaryColor,
     elevation: 4,
   },
   textChild: {
-    color: Colors.primaryColor,
+    color: Colors.rippleColor,
     textAlign: "center",
   },
   pressed: {

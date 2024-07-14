@@ -5,6 +5,7 @@ const Colors = {
   accentColor: "#FFF8DB",
   rippleColor: "#fff",
   backgroundAccentColor: "#f5d3bc",
+  neutralColor: "#000",
 };
 
 export default Colors;
