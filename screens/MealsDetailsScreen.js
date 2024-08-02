@@ -10,19 +10,23 @@ import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
-import { useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import IconButton from "../components/IconButton";
+import { FavouriteContext } from "../store/context/favourite-context";
 
 const MealsDetailsScreen = ({ route, navigation }) => {
   const mealId = route.params.mealItem.id;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("#e4baa1");
+  const favouriteMealsConext = useContext(FavouriteContext);
+  const isMealsFavourite = favouriteMealsConext.ids.includes(mealId);
 
   const headerButtonPressedHandler = () => {
-    console.log("pressed!");
-    if (color == "") {
-      setColor("#e2b497");
-    } else setColor("");
+    if (isMealsFavourite) {
+      favouriteMealsConext.removeFavourite(mealId);
+    } else {
+      favouriteMealsConext.addFavourite(mealId);
+    }
   };
 
   useLayoutEffect(() => {
@@ -31,7 +35,7 @@ const MealsDetailsScreen = ({ route, navigation }) => {
         return (
           <IconButton
             onPress={headerButtonPressedHandler}
-            icon="star"
+            icon={isMealsFavourite ? "star" : "star-outline"}
             color={color}
           />
         );
